@@ -30,12 +30,12 @@ func (s *server) SayHello(ctx context.Context, in *pb.Request) (*pb.Response, er
 		return nil, fmt.Errorf("invalid token")
 	}
 
-	jwtToken, ok := md["authorization"]
+	token, ok := md["authorization"]
 	if !ok {
 		return nil, fmt.Errorf("invalid token")
 	}
 
-	return &pb.Response{Message: fmt.Sprintf("Hello %s (%s)", in.Name, jwtToken)}, nil
+	return &pb.Response{Message: fmt.Sprintf("Hello %s (%s)", in.Name, token)}, nil
 }
 
 func NewServer() *server {
